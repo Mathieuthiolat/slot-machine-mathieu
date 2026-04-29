@@ -7,6 +7,7 @@ import { paylines } from './config/paylines.js';
 import { paytable } from './config/paytable.js';
 
 //Import classes
+import { Preloader } from './classes/Preloader.js';
 import { ReelGrid } from './classes/ReelGrid.js';
 import { WinCalculator } from './classes/WinCalculator.js';
 
@@ -21,7 +22,9 @@ await app.init({
 
 document.body.appendChild(app.canvas);
 
-await PIXI.Assets.load(assets);
+const preloader = new Preloader(app);
+
+await preloader.load(assets);
 
 const reelGrid = new ReelGrid({
   bands,
@@ -50,10 +53,14 @@ spinButton.cursor = 'pointer';
 app.stage.addChild(spinButton);
 
 //Gestion Text
-const winText = new PIXI.Text('Total wins: 0', {
-  fontSize: 20,
-  fill: 0xffffff,
+const winText = new PIXI.Text({
+    text: 'Total wins: 0',
+    style: {
+        fontSize: 20,
+        fill: 0xffffff,
+    },
 });
+
 winText.x = app.screen.width / 2;
 winText.y = spinButton.y + 80;
 winText.style.wordWrap = true;
@@ -69,7 +76,6 @@ spinButton.on('pointertap', () => {
   
   formatWinText(result)
   
-  console.log(result);
 });
 
 function formatWinText(result) {
@@ -99,6 +105,24 @@ function fitTextToArea(textObject, maxWidth, maxHeight) {
 
   textObject.scale.set(scale);
 }
+
+function layout() {
+  reelGrid.center(app);
+
+  spinButton.x = app.screen.width / 2;
+  spinButton.y = reelGrid.container.y + reelGrid.gridHeight / 2 + 80;
+
+  winText.x = app.screen.width / 2;
+  winText.y = spinButton.y + 70;
+
+  fitTextToArea(
+    winText,
+    app.screen.width * 0.9,
+    app.screen.height - winText.y - 20
+  );
+}
+window.addEventListener('resize', layout);
+layout();
 
 const resultInitial = winCalculator.calculate(reelGrid.getGrid());
 formatWinText(resultInitial)
