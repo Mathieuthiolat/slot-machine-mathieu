@@ -1,8 +1,8 @@
 ## 1. Write a basic slot machine game in javascript using pixi.js
 
-Write a game in ECMAScript 6th edition (https://en.wikipedia.org/wiki/ECMAScript#ES2015) using pixi.js (https://pixijs.com/) that simulates a basic slot machine. The screen should display a 5 columns by 3 rows reels, a spin button below the reels and a text area below to display the wins. Elements should be centered in the screen and the game area containing the elements should rescale with window resizes. 
+Write a game in ECMAScript 6th edition (https://en.wikipedia.org/wiki/ECMAScript#ES2015) using pixi.js (https://pixijs.com/) that simulates a basic slot machine. The screen should display a 5 columns by 3 rows reels, a spin button below the reels and a text area below to display the wins. Elements should be centered in the screen and the game area containing the elements should rescale with window resizes.
 
-All images that will be used in the game should priorly be loaded in a preloader screen. The preloader screen should display the percentage of the assets that are loaded in a PIXI.Text, text should be centered in the screen. 
+All images that will be used in the game should priorly be loaded in a preloader screen. The preloader screen should display the percentage of the assets that are loaded in a PIXI.Text, text should be centered in the screen.
 
 To display the symbols on the reels, use PIXI.Sprite with the symbol images provided.
 
@@ -11,6 +11,7 @@ For the spin button, use the circle button image provided. When pressing the spi
 To determine the visible symbols, use this reelset bands description:
 
 Reelset:
+
 - Band 1: "hv2", "lv3", "lv3", "hv1", "hv1", "lv1", "hv1", "hv4", "lv1", "hv3", "hv2", "hv3", "lv4", "hv4", "lv1", "hv2", "lv4", "lv1", "lv3", "hv2"
 - Band 2: "hv1", "lv2", "lv3", "lv2", "lv1", "lv1", "lv4", "lv1", "lv1", "hv4", "lv3", "hv2", "lv1", "lv3", "hv1", "lv1", "lv2", "lv4", "lv3", "lv2"
 - Band 3: "lv1", "hv2", "lv3", "lv4", "hv3", "hv2", "lv2", "hv2", "hv2", "lv1", "hv3", "lv1", "hv1", "lv2", "hv3", "hv2", "hv4", "hv1", "lv2", "lv4"
@@ -35,7 +36,7 @@ Here is an example of some positions and the symbols that should be displayed on
 
 ## 2. Next, implement the winnings calculation for the following paytable:
 
-     Symbol id | 3 of a kind | 4 of a kind | 5 of a kind 
+     Symbol id | 3 of a kind | 4 of a kind | 5 of a kind
     -----------|-------------|-------------|-------------
          hv1   |      10     |      20     |      50
     -----------|-------------|-------------|-------------
@@ -43,15 +44,15 @@ Here is an example of some positions and the symbols that should be displayed on
     -----------|-------------|-------------|-------------
          hv3   |      5      |      10     |      15
     -----------|-------------|-------------|-------------
-         hv4   |      5      |      10     |      15 
+         hv4   |      5      |      10     |      15
     -----------|-------------|-------------|-------------
-         lv1   |      2      |      5      |      10 
+         lv1   |      2      |      5      |      10
     -----------|-------------|-------------|-------------
-         lv2   |      1      |      2      |      5 
+         lv2   |      1      |      2      |      5
     -----------|-------------|-------------|-------------
-         lv3   |      1      |      2      |      3 
+         lv3   |      1      |      2      |      3
     -----------|-------------|-------------|-------------
-         lv4   |      1      |      2      |      3 
+         lv4   |      1      |      2      |      3
     -----------|-------------|-------------|-------------
 
 The pay lines always pay from left to right, starting on the first, left-most column. You should check for winning combinations on the following lines (x represents a symbol match position on the pay line):
@@ -77,11 +78,11 @@ The pay lines always pay from left to right, starting on the first, left-most co
                  |      - - - x x
           5      |      - - x - -
                  |      x x - - -
-    -------------|-------------------- 
+    -------------|--------------------
                  |      x - - - x
           6      |      - x - x -
                  |      - - x - -
-    -------------|-------------------- 
+    -------------|--------------------
                  |      - - x - -
           7      |      - x - x -
                  |      x - - - x
@@ -95,7 +96,7 @@ Here is an example of a complete result with wins:
       hv2 hv2 hv2 lv1 hv1
       lv3 lv1 lv3 hv1 lv2
       lv3 lv3 lv4 lv2 hv1
-    Total wins: 6 
+    Total wins: 6
     - payline 2, hv2 x3, 5
     - payline 5, lv3 x3, 1
 
@@ -106,7 +107,7 @@ And here's some other examples:
       hv2 hv1 lv1 hv2 lv3
       lv3 lv2 hv2 lv2 lv4
       lv3 lv3 lv3 hv3 hv2
-    Total wins: 1 
+    Total wins: 1
     - payline 3, lv3 x3, 1
 
     Positions: 5, 14, 9, 9, 16

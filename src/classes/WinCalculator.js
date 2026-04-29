@@ -4,7 +4,7 @@ export class WinCalculator {
     this.paytable = paytable;
   }
 
-    calculate(grid) {
+  calculate(grid) {
     const wins = [];
     let total = 0;
 

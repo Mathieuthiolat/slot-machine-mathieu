@@ -8,11 +8,11 @@ export class Preloader {
 
   show() {
     this.loaderText = new PIXI.Text({
-        text: 'Loading 0%',
-        style: {
-            fontSize: 40,
-            fill: 0xffffff,
-        },
+      text: 'Loading 0%',
+      style: {
+        fontSize: 40,
+        fill: 0xffffff,
+      },
     });
 
     this.loaderText.anchor.set(0.5);

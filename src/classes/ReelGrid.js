@@ -1,7 +1,13 @@
 import * as PIXI from 'pixi.js';
 
 export class ReelGrid {
-  constructor({ bands, symbolSize = 100, spacing = 20, visibleRows = 3 ,debug = false}) {
+  constructor({
+    bands,
+    symbolSize = 100,
+    spacing = 20,
+    visibleRows = 3,
+    debug = false,
+  }) {
     this.bands = bands;
     this.symbolSize = symbolSize;
     this.spacing = spacing;
@@ -12,23 +18,25 @@ export class ReelGrid {
     this.gridHeight = this.visibleRows * this.cellSize;
 
     this.positions = debug
-        ? [0, 11, 1, 10, 14]
-        : new Array(this.bands.length).fill(0);
+      ? [0, 11, 1, 10, 14]
+      : new Array(this.bands.length).fill(0);
 
     this.container = new PIXI.Container();
     this.container.pivot.set(this.gridWidth / 2, this.gridHeight / 2);
-    
+
     this.debugBorder = new PIXI.Graphics();
     this.debug = debug;
 
-    if (this.debug) {// I had an issue when creating the bands.js assets so i made a check to be sure
+    if (this.debug) {
+      // I had an issue when creating the bands data so i made a check to be sure
       bands.forEach((band, i) => {
-        if(band.length != 20){
-          console.error(`Band ${i} is invalid: expected 20 symbols, got ${band.length}`)
+        if (band.length != 20) {
+          console.error(
+            `Band ${i} is invalid: expected 20 symbols, got ${band.length}`,
+          );
         }
       });
     }
-    
   }
 
   center(app) {
@@ -36,7 +44,8 @@ export class ReelGrid {
     this.container.y = app.screen.height / 2;
   }
 
-  createDebugBorder() { //Helping debug to improve placement
+  createDebugBorder() {
+    //Helping debug to improve placement
     this.debugBorder.clear();
     this.debugBorder.rect(0, 0, this.gridWidth, this.gridHeight);
     this.debugBorder.stroke({ width: 2, color: 0xff0000 });
@@ -55,7 +64,7 @@ export class ReelGrid {
 
   getGrid() {
     return this.bands.map((band, index) =>
-      this.getVisibleSymbols(band, this.positions[index])
+      this.getVisibleSymbols(band, this.positions[index]),
     );
   }
 
@@ -92,7 +101,7 @@ export class ReelGrid {
     symbolSprite.height = this.symbolSize;
 
     symbolSprite.x = reelIndex * this.cellSize + this.cellSize / 2;
-    symbolSprite.y = rowIndex * this.cellSize + this.cellSize / 2 ;
+    symbolSprite.y = rowIndex * this.cellSize + this.cellSize / 2;
 
     this.container.addChild(symbolSprite);
   }

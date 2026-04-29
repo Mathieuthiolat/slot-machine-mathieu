@@ -14,6 +14,7 @@ Basic slot machine game built with JavaScript (ES6) and PixiJS v8.
 
 Project organized into small, focused modules to separate rendering, game logic, and configuration.
 
+```
 src/
 ├── classes/
 │   ├── ReelGrid.js        # Reel rendering & logic
@@ -25,6 +26,7 @@ src/
 │   ├── paylines.js        # Payline patterns
 │   └── paytable.js        # Payout rules
 └── main.js                # App entry point
+```
 
 ## 🛠️ Tech Stack
 
@@ -36,4 +38,4 @@ src/
 ```bash
 npm install
 npm run dev
-
+```
