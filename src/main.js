@@ -71,7 +71,7 @@ spinButton.on('pointertap', () => {
   reelGrid.spin();
 
   const result = winCalculator.calculate(reelGrid.getGrid());
-
+  console.log(result)
   formatWinText(result);
 });
 
@@ -79,7 +79,7 @@ function formatWinText(result) {
   let text = `Total wins: ${result.total}\n`;
 
   for (let i = 0; i < result.wins.length; i++) {
-    text += `- payline ${win.paylineId}, ${win.symbol} x${win.count}, ${win.payout}\n`;
+    text += `- payline ${result.wins[i].paylineId}, ${result.wins[i].symbol} x${result.wins[i].count}, ${result.wins[i].payout}\n`;
   }
 
   winText.text = text;
