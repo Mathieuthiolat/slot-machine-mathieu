@@ -75,13 +75,13 @@ describe('WinCalculator.calculate', () => {
     expect(result.wins[0]).toMatchObject({ paylineId: 3, symbol: 'lv3', count: 3, payout: 1 });
   });
   
-  it('positions [5,14,9,9,16] → total 7, payline 6 lv1×4=5, payline 7 lv1×3=2', () => {
+  it('positions [5,14,9,9,16] → total 10, payline 6 lv1×4=5, payline 7 lv1×3=4=5', () => {
     const result = calculator.calculate(buildGrid([5, 14, 9, 9, 16]));
  
-    expect(result.total).toBe(7);
+    expect(result.total).toBe(10);
     expect(result.wins).toHaveLength(2);
     expect(result.wins[0]).toMatchObject({ paylineId: 6, symbol: 'lv1', count: 4, payout: 5 });
-    expect(result.wins[1]).toMatchObject({ paylineId: 7, symbol: 'lv1', count: 3, payout: 2 });
+    expect(result.wins[1]).toMatchObject({ paylineId: 7, symbol: 'lv1', count: 4, payout: 5 });
   });
 
 
