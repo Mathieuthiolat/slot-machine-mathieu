@@ -36,17 +36,14 @@ export class Preloader {
   async load(assets) {
     this.show();
 
-    // laisse le temps d’afficher "Loading 0%"
     await new Promise(requestAnimationFrame);
 
     await PIXI.Assets.load(assets, (progress) => {
       this.update(progress);
     });
 
-    // force affichage 100%
     this.update(1);
 
-    // petite pause visuelle (optionnelle mais nice)
     await new Promise((resolve) => setTimeout(resolve, 300));
 
     this.hide();
