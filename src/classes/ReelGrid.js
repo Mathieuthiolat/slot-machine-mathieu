@@ -17,9 +17,7 @@ export class ReelGrid {
     this.gridWidth = this.bands.length * this.cellSize;
     this.gridHeight = this.visibleRows * this.cellSize;
 
-    this.positions = debug
-      ? [0, 11, 1, 10, 14]
-      : new Array(this.bands.length).fill(0);
+    this.positions = new Array(this.bands.length).fill(0);
 
     this.container = new PIXI.Container();
     this.container.pivot.set(this.gridWidth / 2, this.gridHeight / 2);
